@@ -42,7 +42,7 @@ resources:
     cpu: 100m
     memory: 128Mi
 
-nodeSelector: worker7-win
+nodeSelector: master2-ubuntu
 
 tolerations: []
 
