@@ -39,7 +39,7 @@ steps:
   - name: deploy
     image: quay.io/ipedrazas/drone-helm
     environment:
-#      STABLE_REPO_URL: https://mirror.azure.cn/kubernetes/charts/
+      STABLE_REPO_URL: https://mirror.azure.cn/kubernetes/charts/
       SERVICE_ACCOUNT: demo-deploy
       API_SERVER:
         from_secret: api_server
