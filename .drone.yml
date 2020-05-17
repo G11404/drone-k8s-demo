@@ -53,7 +53,7 @@ steps:
       recreate_pods: true
       chart: ./helm
       release: autolab
-      values_files: ["./helm/my-values.yaml"]
+      values_files: ["./helm/values.yaml"]
       namespace: demo
     when:
       event: push
