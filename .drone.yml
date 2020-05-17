@@ -2,39 +2,39 @@ kind: pipeline
 name: default
 
 steps:
-  - name: linter
-    image: golang:latest
-    environment:
-      GOPROXY: https://mirrors.aliyun.com/goproxy/
-    commands:
-      - go get -u github.com/golangci/golangci-lint/cmd/golangci-lint
-      - golangci-lint run
+ # - name: linter
+ #   image: golang:latest
+ #   environment:
+ #     GOPROXY: https://mirrors.aliyun.com/goproxy/
+ #   commands:
+ #     - go get -u github.com/golangci/golangci-lint/cmd/golangci-lint
+ #     - golangci-lint run
 
-  - name: build
-    image: golang:latest
-    environment:
-      GOPROXY: https://mirrors.aliyun.com/goproxy/
-      GOOS: linux
-      GOARCH: amd64
-      CGO_ENABLED: 0
-    commands:
-      - go build -o demo-app
+ # - name: build
+ #   image: golang:latest
+ #   environment:
+ #     GOPROXY: https://mirrors.aliyun.com/goproxy/
+ #     GOOS: linux
+ #     GOARCH: amd64
+ #     CGO_ENABLED: 0
+ #   commands:
+ #     - go build -o demo-app
 
-  - name: docker
-    image: plugins/docker
-    settings:
-      repo: cnych/devops-demo
-      use_cache: true
-      username:
-        from_secret: docker_username
-      password:
-        from_secret: docker_password
-    tags:
-      - latest
+ # - name: docker
+ #   image: plugins/docker
+ #   settings:
+ #     repo: cnych/devops-demo
+ #     use_cache: true
+ #     username:
+ #       from_secret: docker_username
+ #     password:
+ #       from_secret: docker_password
+ #   tags:
+ #     - latest
      #  - ${DRONE_COMMIT_SHA:0:8}
-    when:
-      event: push
-      branch: master
+ #   when:
+ #     event: push
+ #     branch: master
 
   - name: deploy
     image: quay.io/ipedrazas/drone-helm
